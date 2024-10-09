@@ -1,4 +1,4 @@
-body {
+main {
     font-family: 'Helvetica Neue', sans-serif;
     margin: 0;
     padding: 0;
@@ -58,6 +58,7 @@ h1 {
     background: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
+    z-index: 1000;
 }
 .modal-content {
     background: #fff;

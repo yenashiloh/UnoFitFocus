@@ -19,7 +19,7 @@ return new class extends Migration
         });*/
 
         Schema::create('user_info', function (Blueprint $table) {
-            $table->bigInteger('user_info_id')->primary();
+            $table->bigIncrements('user_info_id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id', 'fk_user_id')
                 ->references('id')

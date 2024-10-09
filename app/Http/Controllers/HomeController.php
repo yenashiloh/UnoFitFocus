@@ -26,8 +26,8 @@ class HomeController extends Controller
     {
         return view('TryCamera');
     }
-    public function viewChoose()
+    public function viewFitCheck()
     {
-        return view('Choose');
+        return view('FitCheck');
     }
 }

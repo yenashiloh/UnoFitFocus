@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserDetails;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -33,7 +34,10 @@ class RegisteredUserController extends Controller
         $request->validate([
             //'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed', Password::min(8) // Minimum length
+                ->mixedCase() // At least one uppercase and one lowercase letter
+                ->numbers(), // At least one number
+                ],
         ]);
 
         $user = User::create([
@@ -43,6 +47,13 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
+        $user_info = UserDetails::create([
+            'user_id' => $user->id,
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+        ]);
 
         Auth::login($user);
 

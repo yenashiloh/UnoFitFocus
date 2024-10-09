@@ -19,19 +19,19 @@
             <li><a href="{{ route('TryCamera') }}">Health Tips</a></li>
             <li><a href="{{ route('AboutUs') }}">About Us</a></li>
             <li><a href="{{ route('Sample') }}">Contact</a></li>
-            <li><a href="{{ route('Choose') }}">Choose</a></li>
+            <li><a href="{{ route('FitCheck') }}">FitCheck</a></li>
         </ul>
         <div class="auth-buttons">
              <!-- Guest users (not logged in) -->
             @guest
-                <li><a href="{{ route('login') }}">Login</a></li>
-                <li><a href="{{ route('register') }}">Register</a></li>
+                <ul><a href="{{ route('login') }}">Login</a></ul>
+                <ul><a href="{{ route('register') }}">Register</a></ul>
             @endguest
 
             <!-- Authenticated users (logged in) -->
             @auth
-                <li><a href="{{ route('profile') }}">Profile</a></li>
-                <li>
+                <ul><a href="{{ route('profile.edit') }}">Profile</a></ul>
+                <ul>
                     <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Log Out
@@ -39,7 +39,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                </li>
+                </ul>
             @endauth
             
             <!--

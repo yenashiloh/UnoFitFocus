@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us | FitFocus</title>
-    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" type="text/css" href="../assets/css/AboutUs.css">
 </head>
 <body>
@@ -53,7 +52,7 @@
                     </div>
                     <div class="developer-card">
                         <img src="../assets/images/placeholder.png" alt="Developer 2">
-                        <h3>Magallanes Butuhan Jr.</h3>
+                        <h3>Magallanes Jr. Butuhan</h3>
                         <p>Machine Learning Engineer & Backend Developer</p>
                     </div>
                     <div class="developer-card">

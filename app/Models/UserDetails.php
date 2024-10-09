@@ -10,12 +10,12 @@
 
         protected $table = 'user_info';
     
-        protected $fillable = ['user_id', 'first_name', 'middle_name', 'last_name', 'brithdate', 'height',
+        protected $fillable = ['user_id', 'first_name', 'middle_name', 'last_name', 'birthdate', 'height',
             'weight', 'gender', 'profile_pic',];
     
         public function loginUser()
         {
-            return $this->belongsTo(User::class, 'user_id');
+            return $this->belongsTo(User::class, 'id');
         }
     }
 ?>
