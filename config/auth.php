@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => env('AUTH_GUARD', 'web'),
-        'passwords' => env('AUTH_PASSWORD_BROKER', 'li_user'),
+        'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 
     /*
@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'li_user',
+            'provider' => 'users',
         ],
 
         // 'li_user' => [
@@ -61,15 +61,14 @@ return [
     | be assigned to any extra authentication guards you have defined.
     |
     | Supported: "database", "eloquent"
-    |papalitan na ba ung provider sa guard since napalitan ung provider s ababa to li_user?
-    oo need wai
+    |
     */
 
     'providers' => [
-        'li_user' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\LoginUser::class,
-
+            //'model' => App\Models\User::class,
+            'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
     ],
 
@@ -93,8 +92,8 @@ return [
     */
 
     'passwords' => [
-        'li_user' => [
-            'provider' => 'li_user',
+        'users' => [
+            'provider' => 'users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

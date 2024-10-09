@@ -8,15 +8,15 @@
     {
         use HasFactory;
 
-        protected $table = 'li_user';
+        protected $table = 'users';
 
-        protected $primaryKey = 'li_user_id';
+        protected $primaryKey = 'user_id';
 
         protected $fillable = ['email', 'password'];
 
         public function userDetails()
         {
-            return $this->hasOne(UserDetails::class, 'li_user_id');
+            return $this->hasOne(UserDetails::class, 'user_id');
         }
     }
 ?>

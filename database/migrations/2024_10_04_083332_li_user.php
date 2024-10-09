@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('li_user', function (Blueprint $table) {
+        /*Schema::create('li_user', function (Blueprint $table) {
             $table->bigInteger('li_user_id')->unsigned()->primary();
             $table->string('email')->unique()->index();
             $table->string('password')->index();
             $table->timestamps(); //created and updated
-        });
+        });*/
 
         Schema::create('user_info', function (Blueprint $table) {
             $table->bigInteger('user_info_id')->primary();
-            $table->bigInteger('li_user_id')->unsigned();
-            $table->foreign('li_user_id', 'fk_li_user_id')
-                ->references('li_user_id')
-                ->on('li_user')
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id', 'fk_user_id')
+                ->references('id')
+                ->on('users')
                 ->onDelete('cascade')
                 ->index();
             $table->string('first_name');
@@ -43,7 +43,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('li_user');
+        //Schema::dropIfExists('li_user');
         Schema::dropIfExists('user_info');
     }
 };

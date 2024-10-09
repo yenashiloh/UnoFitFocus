@@ -13,15 +13,15 @@ class LoginController extends Controller
     protected function create(array $data)
     {
         // First, create a record in the li_user table
-        $loginUser = LoginUser::create([
+        $loginUser = User::create([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
         // Then, create a record in the user_info table using the ID of the created login_info record
-        // ifforeign key yung li_user_id tho kaya eon ung nilagay ko there, mali ba pag ganon
+        
         UserDetails::create([
-            'li_user_id' => $loginUser->id,
+            'user_id' => $loginUser->id,
             'first_name' => $data['first_name'],
             'middle_name' => $data['middle_name'],
             'last_name' => $data['last_name'],
@@ -34,7 +34,7 @@ class LoginController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:li_user'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:li_user,email'],
             'password' => [
                 'required',
                 'string',
