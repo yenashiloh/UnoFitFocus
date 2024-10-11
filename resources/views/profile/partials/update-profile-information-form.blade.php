@@ -25,13 +25,13 @@
 
         <div>
             <x-input-label for="middle_name" :value="__('Middle Name')" />
-            <x-text-input id="middle_name" name="middle_name" type="text" class="mt-1 block w-full" :value="old('middle_name', $user->middle_name)" required autofocus autocomplete="middle_name" />
+            <x-text-input id="middle_name" name="middle_name" type="text" class="mt-1 block w-full" :value="old('middle_name', $user->middle_name)" required autocomplete="middle_name" />
             <x-input-error class="mt-2" :messages="$errors->get('middle_name')" />
         </div>
 
         <div>
             <x-input-label for="last_name" :value="__('Last Name')" />
-            <x-text-input id="last_name" name="last_name" type="text" class="mt-1 block w-full" :value="old('last_name', $user->last_name)" required autofocus autocomplete="last_name" />
+            <x-text-input id="last_name" name="last_name" type="text" class="mt-1 block w-full" :value="old('last_name', $user->last_name)" required autocomplete="last_name" />
             <x-input-error class="mt-2" :messages="$errors->get('last_name')" />
         </div>
 

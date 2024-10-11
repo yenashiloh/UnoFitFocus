@@ -19,6 +19,12 @@ Route::get('FitCheck', [HomeController::class, 'viewFitCheck'])->name('FitCheck'
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/Setup', function () {
+    return view('Setup');
+})->middleware(['auth', 'verified'])->name('Setup');
+Route::post('/Setup', function () {
+    return view('Setup');
+})->middleware(['auth', 'verified'])->name('Setup');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

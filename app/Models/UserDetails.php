@@ -9,6 +9,7 @@
         use HasFactory;
 
         protected $table = 'user_info';
+        protected $primaryKey = 'user_info_id';
     
         protected $fillable = ['user_id', 'first_name', 'middle_name', 'last_name', 'birthdate', 'height',
             'weight', 'gender', 'profile_pic',];
