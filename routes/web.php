@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('home');
@@ -25,6 +25,9 @@ Route::get('/Setup', function () {
 Route::post('/Setup', function () {
     return view('Setup');
 })->middleware(['auth', 'verified'])->name('Setup');
+Route::patch('/profile/update', [ProfileController::class, 'update'])
+    ->middleware(['auth', 'verified'])
+    ->name('profile.update');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
