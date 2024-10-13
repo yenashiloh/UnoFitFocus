@@ -13,8 +13,7 @@ Route::get('About-Us', [HomeController::class, 'viewAboutUs'])->name('AboutUs');
 Route::get('Exercises', [HomeController::class, 'viewExercises'])->name('Exercises');
 Route::get('Profile', [HomeController::class, 'viewSample'])->name('Sample');
 Route::get('Camera', [HomeController::class, 'viewCamera'])->name('TryCamera');
-Route::get('FitCheck', [HomeController::class, 'viewFitCheck'])->name('FitCheck');
-//Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -22,6 +21,12 @@ Route::get('/dashboard', function () {
 Route::get('/Setup', function () {
     return view('Setup');
 })->middleware(['auth', 'verified'])->name('Setup');
+Route::get('/Workout', function () {
+    return view('Workout');
+})->middleware(['auth', 'verified'])->name('Workout');
+Route::get('/FitCheck', function () {
+    return view('FitCheck');
+})->middleware(['auth', 'verified'])->name('FitCheck');
 Route::post('/Setup', function () {
     return view('Setup');
 })->middleware(['auth', 'verified'])->name('Setup');

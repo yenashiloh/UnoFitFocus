@@ -71,7 +71,5 @@ session_start();
             <li><a href="#privacy">Privacy Policy</a></li>
         </ul>
     </footer>
-    <script>
-    </script>
 </body>
 </html>

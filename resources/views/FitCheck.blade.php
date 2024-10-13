@@ -3,46 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FitCheck | FitFocus</title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/FitCheck.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
+    <style>
+        video {
+            width: 100%;
+            max-width: 600px;
+            border: 2px solid black;
+        }
+        #camera-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    @include('partials.navbar')
     <main>
-        <div class="container">
-            <h1>Select Your Workout</h1>
-            <div class="workout-options">
-                <div class="workout-item" id="pushup">
-                    <img src="../assets/images/pu_standard.jpg" alt="Push-Up">
-                    <p>Push-Up</p>
-                </div>
-                <div class="workout-item" id="squat">
-                    <img src="../assets/images/sq_standard.jpg" alt="Squat">
-                    <p>Squat</p>
-                </div>
-                <div class="workout-item" id="crunch">
-                    <img src="../assets/images/cr_standard.jpg" alt="Crunch">
-                    <p>Crunch</p>
-                </div>
-            </div>
-        </div>
+        <x-app-layout>
+            <x-slot name="header">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    {{ __('FitCheck') }}
+                </h2>
+                <h2 class="text-x2 text-gray-800 leading-tight">
+                    {{ __('Select a workout, choose a difficulty level, and start working out!') }}
+                </h2>
+            </x-slot>
 
-        <!-- Modal -->
-        <div class="modal" id="modal">
-            <div class="modal-content">
-                <h2 id="workout-title">Select Difficulty</h2>
-                <div class="difficulty-options">
-                    <button class="difficulty-btn" data-difficulty="Beginner">Beginner</button>
-                    <button class="difficulty-btn" data-difficulty="Intermediate">Intermediate</button>
-                    <button class="difficulty-btn" data-difficulty="Expert">Expert</button>
-                </div>
-                <div class="modal-buttons">
-                    <button class="go-btn disabled" id="goBtn">Go</button>
-                    <button class="close-btn" id="closeBtn">Close</button>
+            <div class="py-12">
+                <div id="camera-container">
+                    <video id="video" autoplay></video>
                 </div>
             </div>
-        </div>
+        </x-app-layout>    
     </main>
-    <script src="../assets/js/FitCheck.js"></script>
+    <script>
+        const video = document.getElementById('video');
+    
+        // Request access to the camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error("Error accessing the camera: ", err);
+            });
+    </script>
 </body>
 </html>

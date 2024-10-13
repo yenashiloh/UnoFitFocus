@@ -19,7 +19,6 @@
             <li><a href="{{ route('TryCamera') }}">Health Tips</a></li>
             <li><a href="{{ route('AboutUs') }}">About Us</a></li>
             <li><a href="{{ route('Sample') }}">Contact</a></li>
-            <li><a href="{{ route('FitCheck') }}">FitCheck</a></li>
         </ul>
         <div class="auth-buttons">
              <!-- Guest users (not logged in) -->
