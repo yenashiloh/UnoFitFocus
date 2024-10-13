@@ -37,7 +37,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('workout_sessions');
         Schema::table('workout_sessions', function (Blueprint $table) {
-            // Drop the foreign key constraint in the down method
             $table->dropForeign('fk_ws_uid');
         });
     }
