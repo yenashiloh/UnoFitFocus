@@ -11,6 +11,7 @@ use App\Models\UserDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -34,44 +35,37 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        // $user = $request->user(); // Get the authenticated user
-        // $userDetails = $user->userDetails;
-
-        // $request->user()->fill($request->validated());
-
-        // $user = $request->user(); // Get the authenticated user
-        // $userDetails = $user->userDetails; // Assuming 'userDetails' is a relationship
-
-        // // Update fields in the users table (if any, like email)
-        // $user->fill($request->validated());
-
-        // if ($request->user()->isDirty('email')) {
-        //     $request->user()->email_verified_at = null;
-        // }
-
-        // $user->save();
-
-        // $request->user()->save();
-
-        $user = $request->user(); // Get the authenticated user
-        $userDetails = $user->userDetails;
-        // $user_info = UserDetails::where('user_id', Auth::id())->first();
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        Log::info('Trying to update user profile.'); 
+    
+        // Retrieve user info based on authenticated user's ID
+        $user_info = UserDetails::where('user_id', Auth::id())->first();
+    
+        // Check if user_info exists
+        if (!$user_info) {
+            Log::error('UserDetails not found for user ID: ' . Auth::id());
+            return Redirect::route('profile.edit')->with('error', 'User details not found.');
         }
-
-        $userDetails->first_name = $request->first_name;
+        $userDetails = $user_info; // You already have the user_info
+    
+        // Check if userDetails exists
+        if (!$userDetails) {
+            Log::error('User relationship not found for user ID: ' . Auth::id());
+            return Redirect::route('profile.edit')->with('error', 'User relationship not found.');
+        }
+    
+        // Update user details
+        $userDetails->first_name = $request->name;
         $userDetails->middle_name = $request->middle_name;
         $userDetails->last_name = $request->last_name;
         $userDetails->birthdate = $request->birthdate;
         $userDetails->height = $request->height;
         $userDetails->weight = $request->weight;
         $userDetails->gender = $request->gender;
-
+    
+        // Save the updated user info
         $userDetails->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    
+        return Redirect::route('profile.edit')->with('status', 'Profile updated successfully.');
     }
 
     /**

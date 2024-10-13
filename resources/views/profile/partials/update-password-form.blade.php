@@ -32,6 +32,9 @@
         </div>
 
         <div class="flex items-center gap-4">
+            <x-secondary-button id="cancel-password-edit-btn" class="px-4 py-2 bg-gray-500 rounded-md hover:bg-gray-600 hover:text-white">
+                {{ __('Cancel') }}
+            </x-secondary-button>
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'password-updated')
@@ -46,3 +49,10 @@
         </div>
     </form>
 </section>
+<script>
+    document.getElementById('cancel-password-edit-btn').addEventListener('click', function() {
+        // Hide the password edit form and show the view-only mode (if applicable)
+        document.getElementById('password-edit').style.display = 'none';
+        document.getElementById('password-view').style.display = 'block';
+    });
+</script>

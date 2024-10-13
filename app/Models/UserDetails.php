@@ -16,7 +16,7 @@
     
         public function loginUser()
         {
-            return $this->belongsTo(User::class, 'id');
+            return $this->belongsTo(User::class, 'user_id');
         }
     }
 ?>

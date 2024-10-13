@@ -22,9 +22,9 @@
         @method('patch')
             
         <div>
-            <x-input-label for="first_name" :value="__('First Name')" />
-            <x-text-input id="first_name" name="first_name" type="text" class="mt-1 block w-full" :value="old('first_name', $userInfo->first_name)" required autofocus autocomplete="first_name" />
-            <x-input-error class="mt-2" :messages="$errors->get('first_name')" />
+            <x-input-label for="name" :value="__('First Name')" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $userInfo->first_name)" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
@@ -117,6 +117,9 @@
         </div>
 
         <div class="flex items-center gap-4">
+            <x-secondary-button id="cancel-edit-btn" class="px-4 py-2 bg-gray-500 rounded-md hover:bg-gray-600 hover:text-white">
+                {{ __('Cancel') }}
+            </x-secondary-button>
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
@@ -154,5 +157,10 @@
 
     // Add event listener to the range input
     height.addEventListener('input', updateRangeInput);
+    document.getElementById('cancel-edit-btn').addEventListener('click', function() {
+        // Hide the edit form and show the view-only profile information
+        document.getElementById('profile-edit').style.display = 'none';
+        document.getElementById('profile-view').style.display = 'block';
+    });
 </script>
 </body>
