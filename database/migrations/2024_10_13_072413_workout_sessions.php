@@ -13,20 +13,21 @@ return new class extends Migration
     {
         Schema::create('workout_sessions', function (Blueprint $table) {
             $table->bigIncrements('session_id');
-            $table->bigInteger('user_id')->unsigned();
-            $table->foreign('user_id', 'fk_ws_userId')
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade')
-                ->index();
-            $table->string('exercise')->index();
-            $table->string('difficulty')->index();
-            $table->tinyInteger('score')->index();
-            $table->date('date_performed');
-            $table->time('start_time');
-            $table->time('end_time');
-            $table->timestamps(); //created and updated
+                ->onDelete('cascade');
+                
+                    $table->string('exercise')->index();
+                    $table->string('difficulty')->index();
+                    $table->tinyInteger('score')->index();
+                    $table->date('date_performed');
+                    $table->time('start_time');
+                    $table->time('end_time');
+                    $table->timestamps(); 
         });
+        
     }
 
     /**
